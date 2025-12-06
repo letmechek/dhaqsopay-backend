@@ -18,7 +18,12 @@ const sanitizeUser = user => ({
 export const register = async (req, res, next) => {
   try {
     console.log('=== REGISTER START ===');
-    console.log('Request body:', req.body);
+    console.log('Request body (sanitized):', {
+      fullName: req.body?.fullName,
+      phone: req.body?.phone,
+      country: req.body?.country,
+      preferredCurrency: req.body?.preferredCurrency
+    });
     
     const { fullName, phone, password, country, preferredCurrency } = req.body;
     const normalizedPhone = typeof phone === 'string' ? phone.trim() : phone;
